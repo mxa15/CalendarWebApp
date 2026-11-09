@@ -40,8 +40,6 @@ let colorMap = {
   secondColor: "#B8F28B",
   textColor: "#F4F7FF",
 };
-import vertexShader from "./shaders/vertex-shader.glsl?raw";
-import fragmentShader from "./shaders/fragment-shader.glsl?raw";
 
 function createRect(x, y, w, h, radius, color) {
   const rect = new Graphics().roundRect(0, 0, w, h, radius).fill(color);
@@ -146,7 +144,7 @@ async function main() {
     container: new ButtonContainer(
       new Graphics().rect(-45, -30, navBar.width / 4, 60).fill("#00000000"),
     ),
-    sprite: new Sprite(await Assets.load("/src/images/today.png")),
+    sprite: new Sprite(await Assets.load("/images/today.png")),
     text: new Text({
       text: "start",
       style: {
@@ -200,7 +198,7 @@ async function main() {
     container: new ButtonContainer(
       new Graphics().rect(-45, -30, navBar.width / 4, 60).fill("#00000000"),
     ),
-    sprite: new Sprite(await Assets.load("/src/images/calendar.png")),
+    sprite: new Sprite(await Assets.load("/images/calendar.png")),
     text: new Text({
       text: "kalender",
       style: {
@@ -256,7 +254,7 @@ async function main() {
     container: new ButtonContainer(
       new Graphics().rect(-45, -30, navBar.width / 4, 60).fill("#00000000"),
     ),
-    sprite: new Sprite(await Assets.load("/src/images/notes.png")),
+    sprite: new Sprite(await Assets.load("/images/notes.png")),
     text: new Text({
       text: "notizen",
       style: {
@@ -310,7 +308,7 @@ async function main() {
     container: new ButtonContainer(
       new Graphics().rect(-45, -30, navBar.width / 4, 60).fill("#00000000"),
     ),
-    sprite: new Sprite(await Assets.load("/src/images/reminder.png")),
+    sprite: new Sprite(await Assets.load("/images/reminder.png")),
     text: new Text({
       text: "erinnerungen",
       style: {
