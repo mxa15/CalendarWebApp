@@ -1,15 +1,11 @@
 import {
   Application,
   Container,
-  Geometry,
   Graphics,
   Text,
   HTMLText,
   Assets,
   Sprite,
-  ColorMatrixFilter,
-  Filter,
-  GlProgram,
   BlurFilter,
 } from "pixi.js";
 import {
@@ -17,7 +13,6 @@ import {
   Button,
   Slider,
   Input,
-  Dialog,
   ScrollBox,
   ProgressBar,
   ButtonContainer,
@@ -62,17 +57,6 @@ async function main() {
   });
 
   document.querySelector("#app").appendChild(app.canvas);
-
-  const background = createRect(
-    0,
-    0,
-    app.canvas.offsetWidth,
-    app.canvas.offsetHeight,
-    0,
-    colorMap.background,
-  );
-
-  app.stage.addChild(background);
 
   const navBar = createRect(
     20,
@@ -169,26 +153,33 @@ async function main() {
   navBar.addChild(nBStartpage.container);
 
   nBStartpage.container.onUp.connect(() => {
+    changePage(0);
     if (selected_positions.r - 30 < nBStartpage.container.position.x) {
       gsap.to(selected_positions, {
         r: nBStartpage.container.position.x + 30,
         duration: 0.3,
+        duration: 0.3,
+        ease: "power3.inOut",
       });
       setTimeout(() => {
         gsap.to(selected_positions, {
           l: nBStartpage.container.position.x - 30,
           duration: 0.3,
+          ease: "power2.inOut",
         });
       }, 100);
     } else if (selected_positions.r - 30 > nBStartpage.container.position.x) {
       gsap.to(selected_positions, {
         l: nBStartpage.container.position.x - 30,
         duration: 0.3,
+        duration: 0.3,
+        ease: "power3.inOut",
       });
       setTimeout(() => {
         gsap.to(selected_positions, {
           r: nBStartpage.container.position.x + 30,
           duration: 0.3,
+          ease: "power2.inOut",
         });
       }, 100);
     }
@@ -225,26 +216,33 @@ async function main() {
   nBCalendar.container.onDown.connect(() => {});
 
   nBCalendar.container.onUp.connect(() => {
+    changePage(1);
     if (selected_positions.r - 30 < nBCalendar.container.position.x) {
       gsap.to(selected_positions, {
         r: nBCalendar.container.position.x + 30,
         duration: 0.3,
+        duration: 0.3,
+        ease: "power3.inOut",
       });
       setTimeout(() => {
         gsap.to(selected_positions, {
           l: nBCalendar.container.position.x - 30,
           duration: 0.3,
+          ease: "power2.inOut",
         });
       }, 100);
     } else if (selected_positions.r - 30 > nBCalendar.container.position.x) {
       gsap.to(selected_positions, {
         l: nBCalendar.container.position.x - 30,
         duration: 0.3,
+        duration: 0.3,
+        ease: "power3.inOut",
       });
       setTimeout(() => {
         gsap.to(selected_positions, {
           r: nBCalendar.container.position.x + 30,
           duration: 0.3,
+          ease: "power2.inOut",
         });
       }, 100);
     }
@@ -279,26 +277,33 @@ async function main() {
   navBar.addChild(nBNotes.container);
 
   nBNotes.container.onUp.connect(() => {
+    changePage(2);
     if (selected_positions.r - 30 < nBNotes.container.position.x) {
       gsap.to(selected_positions, {
         r: nBNotes.container.position.x + 30,
         duration: 0.3,
+        duration: 0.3,
+        ease: "power3.inOut",
       });
       setTimeout(() => {
         gsap.to(selected_positions, {
           l: nBNotes.container.position.x - 30,
           duration: 0.3,
+          ease: "power2.inOut",
         });
       }, 100);
     } else if (selected_positions.r - 30 > nBNotes.container.position.x) {
       gsap.to(selected_positions, {
         l: nBNotes.container.position.x - 30,
         duration: 0.3,
+        duration: 0.3,
+        ease: "power3.inOut",
       });
       setTimeout(() => {
         gsap.to(selected_positions, {
           r: nBNotes.container.position.x + 30,
           duration: 0.3,
+          ease: "power2.inOut",
         });
       }, 100);
     }
@@ -333,26 +338,33 @@ async function main() {
   navBar.addChild(nBReminder.container);
 
   nBReminder.container.onUp.connect(() => {
+    changePage(3);
     if (selected_positions.r - 30 < nBReminder.container.position.x) {
       gsap.to(selected_positions, {
         r: nBReminder.container.position.x + 30,
         duration: 0.3,
+        duration: 0.3,
+        ease: "power3.inOut",
       });
       setTimeout(() => {
         gsap.to(selected_positions, {
           l: nBReminder.container.position.x - 30,
           duration: 0.3,
+          ease: "power2.inOut",
         });
       }, 100);
     } else if (selected_positions.r - 30 > nBReminder.container.position.x) {
       gsap.to(selected_positions, {
         l: nBReminder.container.position.x - 30,
         duration: 0.3,
+        duration: 0.3,
+        ease: "power3.inOut",
       });
       setTimeout(() => {
         gsap.to(selected_positions, {
           r: nBReminder.container.position.x + 30,
           duration: 0.3,
+          ease: "power2.inOut",
         });
       }, 100);
     }
@@ -367,7 +379,67 @@ async function main() {
     if (tabName == activeTab) return;
   }
 
-  const startpage = new Container();
+  let activePage = 0;
+
+  const pages = [
+    new Container(),
+    new Container(),
+    new Container(),
+    new Container(),
+  ];
+
+  const stext = new Text({
+    text: "startseite",
+    style: {
+      fontSize: 24,
+      fill: "#ffffff",
+      fontFamily: "Arial",
+    },
+  });
+
+  const ctext = new Text({
+    text: "kalender",
+    style: {
+      fontSize: 24,
+      fill: "#ffffff",
+      fontFamily: "Arial",
+    },
+  });
+
+  const ntext = new Text({
+    text: "notizen",
+    style: {
+      fontSize: 24,
+      fill: "#ffffff",
+      fontFamily: "Arial",
+    },
+  });
+
+  const rtext = new Text({
+    text: "erinnerungen",
+    style: {
+      fontSize: 24,
+      fill: "#ffffff",
+      fontFamily: "Arial",
+    },
+  });
+
+  pages[0].addChild(stext);
+  pages[1].addChild(ctext);
+  pages[2].addChild(ntext);
+  pages[3].addChild(rtext);
+
+  pages.forEach((page) => {
+    page.visible = false;
+    app.stage.addChild(page);
+  });
+  pages[activePage].visible = true;
+
+  function changePage(page) {
+    pages[activePage].visible = false;
+    pages[page].visible = true;
+    activePage = page;
+  }
 
   //update
   let last_pos = { ...selected_positions };
