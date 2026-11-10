@@ -27,6 +27,8 @@ import {
 } from "pixi-filters";
 import gsap from "gsap";
 
+import Dexie from "dexie";
+
 let colorMap = {
   background: "#0B0F19",
   secondBG: "#151C2C",
@@ -414,6 +416,7 @@ async function main() {
       fill: "#ffffff",
       fontFamily: "Arial",
     },
+    anchor: 0.5,
   });
 
   pages[0].addChild(stext);
