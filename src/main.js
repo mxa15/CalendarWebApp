@@ -158,8 +158,7 @@ async function main() {
       gsap.to(selected_positions, {
         r: nBStartpage.container.position.x + 30,
         duration: 0.3,
-        duration: 0.3,
-        ease: "power3.inOut",
+        ease: "power2.inOut",
       });
       setTimeout(() => {
         gsap.to(selected_positions, {
@@ -172,8 +171,7 @@ async function main() {
       gsap.to(selected_positions, {
         l: nBStartpage.container.position.x - 30,
         duration: 0.3,
-        duration: 0.3,
-        ease: "power3.inOut",
+        ease: "power2.inOut",
       });
       setTimeout(() => {
         gsap.to(selected_positions, {
@@ -221,8 +219,7 @@ async function main() {
       gsap.to(selected_positions, {
         r: nBCalendar.container.position.x + 30,
         duration: 0.3,
-        duration: 0.3,
-        ease: "power3.inOut",
+        ease: "power2.inOut",
       });
       setTimeout(() => {
         gsap.to(selected_positions, {
@@ -235,8 +232,7 @@ async function main() {
       gsap.to(selected_positions, {
         l: nBCalendar.container.position.x - 30,
         duration: 0.3,
-        duration: 0.3,
-        ease: "power3.inOut",
+        ease: "power2.inOut",
       });
       setTimeout(() => {
         gsap.to(selected_positions, {
@@ -282,8 +278,7 @@ async function main() {
       gsap.to(selected_positions, {
         r: nBNotes.container.position.x + 30,
         duration: 0.3,
-        duration: 0.3,
-        ease: "power3.inOut",
+        ease: "power2.inOut",
       });
       setTimeout(() => {
         gsap.to(selected_positions, {
@@ -296,8 +291,7 @@ async function main() {
       gsap.to(selected_positions, {
         l: nBNotes.container.position.x - 30,
         duration: 0.3,
-        duration: 0.3,
-        ease: "power3.inOut",
+        ease: "power2.inOut",
       });
       setTimeout(() => {
         gsap.to(selected_positions, {
@@ -343,8 +337,7 @@ async function main() {
       gsap.to(selected_positions, {
         r: nBReminder.container.position.x + 30,
         duration: 0.3,
-        duration: 0.3,
-        ease: "power3.inOut",
+        ease: "power2.inOut",
       });
       setTimeout(() => {
         gsap.to(selected_positions, {
@@ -357,8 +350,7 @@ async function main() {
       gsap.to(selected_positions, {
         l: nBReminder.container.position.x - 30,
         duration: 0.3,
-        duration: 0.3,
-        ease: "power3.inOut",
+        ease: "power2.inOut",
       });
       setTimeout(() => {
         gsap.to(selected_positions, {
