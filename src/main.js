@@ -7,6 +7,7 @@ import {
   Assets,
   Sprite,
   BlurFilter,
+  TextStyle,
 } from "pixi.js";
 import {
   FancyButton,
@@ -47,6 +48,20 @@ function createRect(x, y, w, h, radius, color) {
 }
 
 async function main() {
+  const inter = new FontFace("Inter", 'url("/fonts/InterVariable.woff2")', {
+    weight: "100 900",
+  });
+
+  await inter.load();
+  document.fonts.add(inter);
+
+  Text.defaultTextStyle = new TextStyle({
+    fontFamily: "Inter",
+    fontSize: 16,
+    fill: "#ffffff",
+    fontWeight: "400",
+  });
+
   const app = new Application();
 
   await app.init({
@@ -117,15 +132,6 @@ async function main() {
 
   app.stage.addChild(navBar);
 
-  const f = new GlowFilter({
-    color: "#ffffff",
-    distance: 15,
-    innerStrength: 1,
-    outerStrength: 2,
-  });
-
-  //navBar.filters = [f];
-
   const nBStartpage = {
     container: new ButtonContainer(
       new Graphics().rect(-45, -30, navBar.width / 4, 60).fill("#00000000"),
@@ -136,7 +142,6 @@ async function main() {
       style: {
         fill: colorMap.textColor,
         fontSize: 13,
-        fontFamily: "Arial",
       },
       anchor: 0.5,
     }),
@@ -195,7 +200,6 @@ async function main() {
       style: {
         fill: colorMap.textColor,
         fontSize: 13,
-        fontFamily: "Arial",
       },
       anchor: 0.5,
     }),
@@ -256,7 +260,6 @@ async function main() {
       style: {
         fill: colorMap.textColor,
         fontSize: 13,
-        fontFamily: "Arial",
       },
       anchor: 0.5,
     }),
@@ -315,7 +318,6 @@ async function main() {
       style: {
         fill: colorMap.textColor,
         fontSize: 13,
-        fontFamily: "Arial",
       },
       anchor: 0.5,
     }),
@@ -382,12 +384,13 @@ async function main() {
     new Container(),
   ];
 
+  const titleStyle = new TextStyle({});
+
   const stext = new Text({
-    text: "startseite",
+    text: "Dayflow",
     style: {
       fontSize: 24,
       fill: "#ffffff",
-      fontFamily: "Arial",
     },
   });
 
@@ -396,7 +399,6 @@ async function main() {
     style: {
       fontSize: 24,
       fill: "#ffffff",
-      fontFamily: "Arial",
     },
   });
 
@@ -405,7 +407,6 @@ async function main() {
     style: {
       fontSize: 24,
       fill: "#ffffff",
-      fontFamily: "Arial",
     },
   });
 
@@ -414,9 +415,7 @@ async function main() {
     style: {
       fontSize: 24,
       fill: "#ffffff",
-      fontFamily: "Arial",
     },
-    anchor: 0.5,
   });
 
   pages[0].addChild(stext);
